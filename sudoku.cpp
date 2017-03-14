@@ -78,11 +78,11 @@ void drawGrid(int grid[SIZE][SIZE]) {
 
 int chose_dificulty(){
   srand(time(NULL));
-  int number_of_given_amounts;
-  printf("For Extremely easy press - 1\n");
-  printf("For Easy press - 2\n");
-  printf("For Medium press - 3\n");
-  printf("For Difficult press - 4\n");
+  int number_of_given_amounts = 0;
+  printf("For Easy press - 1\n");
+  printf("For Medium press - 2\n");
+  printf("For Difficult press - 3\n");
+  printf("For Hard press - 4\n");
   printf("For Evil press - 5\n");
   int choise;
   do{
@@ -93,19 +93,19 @@ int chose_dificulty(){
   }while(choise < 1 || choise > 5);
   switch (choise) {
     case 1:
-      number_of_given_amounts = 81 - rand() % 10 + 50;
+      number_of_given_amounts = rand() % 5 + 40;
       break;
     case 2:
-      number_of_given_amounts = 81 - rand() % 13 + 36;
+      number_of_given_amounts = rand() % 5 + 45;
       break;
     case 3:
-      number_of_given_amounts = 81 - rand() % 3 + 32;
+      number_of_given_amounts = rand() % 10 + 50;
       break;
     case 4:
-      number_of_given_amounts = 81 - rand() % 3 + 28;
+      number_of_given_amounts = rand() % 10 + 55;
       break;
     case 5:
-      number_of_given_amounts = 81 - rand() % 5 + 22;
+      number_of_given_amounts = rand() % 10 + 65;
       break;
   }
   return number_of_given_amounts;
@@ -134,8 +134,8 @@ void body() {
     drawGrid(grid);
     number_of_given_amounts = chose_dificulty();
     for (size_t i = 0; i < number_of_given_amounts; i++) {
-      int row = rand() % 9 + 1;
-      int col = rand() % 9 + 1;
+      int row = rand() % 9;
+      int col = rand() % 9;
       grid[row][col] = 0;
     }
     drawGrid(grid);
