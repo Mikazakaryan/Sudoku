@@ -76,7 +76,7 @@ void drawGrid(int grid[SIZE][SIZE]) {
   }
 }
 
-/*int chose_dificulty(){
+int chose_dificulty(){
   srand(time(NULL));
   int number_of_given_amounts;
   printf("For Extremely easy press - 1\n");
@@ -109,7 +109,7 @@ void drawGrid(int grid[SIZE][SIZE]) {
       break;
   }
   return number_of_given_amounts;
-}*/
+}
 
 void body() {
   int grid[SIZE][SIZE] = {{0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -132,15 +132,13 @@ void body() {
   }
   if (fill(grid) == true) {
     drawGrid(grid);
-  /*  number_of_given_amounts = chose_dificulty();
+    number_of_given_amounts = chose_dificulty();
     for (size_t i = 0; i < number_of_given_amounts; i++) {
-      for (size_t row = 0; row < SIZE; row = rand() % 9 + 1) {
-        for (size_t col = 0; col < SIZE; col = rand() % 9 + 1) {
-            grid[row][col] = 0;
-        }
-      }
+      int row = rand() % 9 + 1;
+      int col = rand() % 9 + 1;
+      grid[row][col] = 0;
     }
-    drawGrid(grid);*/
+    drawGrid(grid);
   } else {
     body();
   }
