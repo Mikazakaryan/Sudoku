@@ -79,21 +79,20 @@ void drawGrid(int grid[SIZE][SIZE]) {
 int chose_dificulty(){
   srand(time(NULL));
   int number_of_given_amounts = 0;
-  printf("For Easy press - 1\n");
-  printf("For Medium press - 2\n");
-  printf("For Difficult press - 3\n");
-  printf("For Hard press - 4\n");
-  printf("For Evil press - 5\n");
+  printf("For easy press - 1\n");
+  printf("For medium press - 2\n");
+  printf("For hard press - 3\n");
+  printf("For evil press - 4\n");
   int choise;
   do{
     std::cin>>choise;
-    if(choise < 1 || choise > 5){
+    if(choise < 1 || choise > 4){
       printf("Wrong number do it aggain\n");
     }
-  }while(choise < 1 || choise > 5);
+  }while(choise < 1 || choise > 4);
   switch (choise) {
     case 1:
-      number_of_given_amounts = rand() % 5 + 40;
+      number_of_given_amounts = rand() % 10 + 35;
       break;
     case 2:
       number_of_given_amounts = rand() % 5 + 45;
@@ -103,9 +102,6 @@ int chose_dificulty(){
       break;
     case 4:
       number_of_given_amounts = rand() % 10 + 55;
-      break;
-    case 5:
-      number_of_given_amounts = rand() % 10 + 65;
       break;
   }
   return number_of_given_amounts;
@@ -136,7 +132,11 @@ void body() {
     for (size_t i = 0; i < number_of_given_amounts; i++) {
       int row = rand() % 9;
       int col = rand() % 9;
-      grid[row][col] = 0;
+      if(grid[row][col] != 0){
+        grid[row][col] = 0;
+      }else{
+        i--;
+      }
     }
     drawGrid(grid);
   } else {
