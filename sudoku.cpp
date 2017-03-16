@@ -87,7 +87,7 @@ int chose_dificulty(){
   do{
     std::cin>>choise;
     if(choise < 1 || choise > 4){
-      printf("Wrong number do it aggain\n");
+     printf("Wrong number do it aggain\n");
     }
   }while(choise < 1 || choise > 4);
   switch (choise) {
@@ -120,8 +120,8 @@ void body() {
   int number_of_given_amounts;
   srand(time(NULL));
   for (int i = 0; i < 30; i++) {
-    int row = rand() % 9 + 1;
-    int col = rand() % 9 + 1;
+    int row = rand() % 9;
+    int col = rand() % 9;
     int val = rand() % 9 + 1;
     if (legalAssign(grid, row, col, val))
       grid[row][col] = val;
