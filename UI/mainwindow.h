@@ -5,6 +5,10 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QtWidgets>
+#include <QString>
+#include <rules_p.h>
+
 
 
 class MainWindow : public QMainWindow
@@ -14,6 +18,12 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+public slots:
+    void play_slot();
+    void rules_slot();
+    void about_me_slot();
+    void exit_slot();
 
 private:
     QLabel *m_wellcome_label = new QLabel();

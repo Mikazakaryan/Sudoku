@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include <QtWidgets>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -7,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     this->setFixedSize(650,400);
 
-     setCentralWidget(m_window);
+    setCentralWidget(m_window);
 
 
     m_wellcome_label->setText("Wellcome to ");
@@ -63,13 +62,27 @@ MainWindow::MainWindow(QWidget *parent) :
     m_about_me->setStyleSheet(m_color);
     m_exit->setStyleSheet(m_color);
 
-
-
-
-
-      connect(m_exit, SIGNAL(clicked()), SLOT(quit()));
+    connect(m_play, SIGNAL(clicked()), this, SLOT(play_slot()));
+    connect(m_rules, SIGNAL(clicked()), this, SLOT(rules_slot()));
+    connect(m_about_me, SIGNAL(clicked()), this, SLOT(about_me_slot()));
+    connect(m_exit, SIGNAL(clicked()), this, SLOT(exit_slot()));
 }
 
+void MainWindow::play_slot(){
+
+}
+
+void MainWindow::rules_slot(){
+
+}
+
+void MainWindow::about_me_slot(){
+
+}
+
+void MainWindow::exit_slot(){
+    close();
+}
 
 MainWindow::~MainWindow()
 {

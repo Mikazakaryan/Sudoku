@@ -7,5 +7,8 @@ int main(int argc, char *argv[])
     MainWindow first_page;
     first_page.show();
 
+//    QMainWindow rules_p;
+//    rules_p.show();
+
     return a.exec();
 }
