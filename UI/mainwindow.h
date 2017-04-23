@@ -7,7 +7,6 @@
 #include <QVBoxLayout>
 #include <QtWidgets>
 #include <QString>
-#include <rules_p.h>
 
 
 
@@ -21,9 +20,10 @@ public:
 
 public slots:
     void play_slot();
-    void rules_slot();
-    void about_me_slot();
+    void rule_slot();
+    void about_slot();
     void exit_slot();
+    void back_slot();
 
 private:
     QLabel *m_wellcome_label = new QLabel();
@@ -38,6 +38,12 @@ private:
     QVBoxLayout *m_layout = new QVBoxLayout;
     QFont m_font;
     QString m_color;
+    QWidget *m_rules_window = new QWidget();
+    QPushButton *m_back_button = new QPushButton();
+    QLabel *m_text_label = new QLabel();
+    QVBoxLayout *m_rules_layout = new QVBoxLayout();
+    QWidget *m_about_window = new QWidget();
+    QVBoxLayout *m_about_layout = new QVBoxLayout();
 };
 
 #endif // MAINWINDOW_H
