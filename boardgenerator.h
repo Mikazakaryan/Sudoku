@@ -19,17 +19,13 @@ public:
     bool existsRow(int grid[9][9], int row, int value);
     bool existsCol(int grid[9][9], int col, int value);
     bool existsBox(int grid[9][9], int boxRow, int boxCol, int value);
-    void body();
-    QVector <int> get_board();
-    QVector <int> get_board_for_game();
+    int get_board(int i, int j);
+    int get_board_for_game(int i, int j);
 
 private:
     int m_number_of_given_amounts;
     int m_grid_for_game[9][9];
     int m_grid[9][9];
-    QVector <int> m_board;
-    QVector <int> m_board_for_game;
-
 };
 
 #endif // BOARDGENERATOR_H

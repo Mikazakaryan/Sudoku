@@ -2,7 +2,35 @@
 
 boardGenerator::boardGenerator()
 {
- body();
+    srand(time(NULL));
+    for (int i = 0; i < 30; i++) {
+      int row = rand() % 9;
+      int col = rand() % 9;
+      int val = rand() % 9 + 1;
+      if (legalAssign(m_grid, row, col, val)){
+        m_grid[row][col] = val;
+      }
+    }
+    if (fill(m_grid) == true) {
+      for (size_t i = 0; i < 9; i++) {
+          for (size_t j = 0; j < 9; j++) {
+            m_grid_for_game[i][j] = m_grid[i][j];
+
+          }
+      }
+      m_number_of_given_amounts = rand() % 10 + 50;
+      for (int i = 0; i < m_number_of_given_amounts; i++) {
+        int row = rand() % 9;
+        int col = rand() % 9;
+        if(m_grid_for_game[row][col] != 0){
+          m_grid_for_game[row][col] = 0;
+        }else{
+          i--;
+        }
+      }
+    } else {
+      boardGenerator();
+    }
 }
 
 bool boardGenerator::fill(int m_grid[9][9]) {
@@ -67,54 +95,12 @@ bool boardGenerator::legalAssign(int m_grid[9][9], int row, int col, int value) 
 }
 
 
-void boardGenerator::body() {
-    srand(time(NULL));
-    for (int i = 0; i < 30; i++) {
-      int row = rand() % 9;
-      int col = rand() % 9;
-      int val = rand() % 9 + 1;
-      if (legalAssign(m_grid, row, col, val)){
-        m_grid[row][col] = val;
-      }
-    }
-    if (fill(m_grid) == true) {
-      for (size_t i = 0; i < 9; i++) {
-          for (size_t j = 0; j < 9; j++) {
-            m_grid_for_game[i][j] = m_grid[i][j];
-
-          }
-      }
-      m_number_of_given_amounts = rand() % 10 + 50;
-      for (int i = 0; i < m_number_of_given_amounts; i++) {
-        int row = rand() % 9;
-        int col = rand() % 9;
-        if(m_grid_for_game[row][col] != 0){
-          m_grid_for_game[row][col] = 0;
-        }else{
-          i--;
-        }
-      }
-    } else {
-      body();
-    }
+int boardGenerator::get_board(int i, int j){
+    return m_grid[i][j];
 }
 
-QVector <int> boardGenerator::get_board(){
-    for (int i = 0; i < 9; ++i) {
-        for (int j = 0; j < 9; ++j) {
-            m_board.push_back(m_grid[i][j]);
-        }
-    }
-    return m_board;
-}
-
-QVector <int> boardGenerator::get_board_for_game(){
-    for (int i = 0; i < 9; ++i) {
-        for (int j = 0; j < 9; ++j) {
-            m_board_for_game.push_back(m_grid_for_game[i][j]);
-        }
-    }
-    return m_board_for_game;
+int boardGenerator::get_board_for_game(int i, int j){
+    return m_grid_for_game[i][j];
 }
 
 

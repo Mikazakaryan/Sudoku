@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-
+#include <QDebug>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent)
 {
@@ -106,7 +106,7 @@ void MainWindow::play_slot(){
 
     m_play_slot_layout->addWidget(m_header);
     m_play_slot_layout->addWidget(m_check_button);
-    m_play_slot_layout->addLayout(m_board_grid);
+    m_play_slot_layout->addWidget(m_board_grid);
     m_footer->addWidget(m_new_game);
     m_footer->addWidget(m_exit);
     m_play_slot_layout->addLayout(m_footer);
@@ -181,29 +181,31 @@ void MainWindow::check_slot(){
 }
 
 void MainWindow::genereting_board(){
+    m_board_grid->setRowCount(9);
+    m_board_grid->setColumnCount(9);
+
     boardGenerator boardGenerator;
-    m_temp = boardGenerator.get_board();
+
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
-            m_board[i][j] = m_temp[9*i+j];
+            m_board[i][j] = boardGenerator.get_board(i,j);
         }
     }
-    m_temp.empty();
-    m_temp = boardGenerator.get_board_for_game();
-    for (int i = 0; i < 9; ++i) {
-        for (int j = 0; j < 9; ++j) {
-            m_board_for_game[i][j] = m_temp[9*i+j];
+
+        for (int i = 0; i < 9; ++i) {
+            for (int j = 0; j < 9; ++j) {
+                m_board_for_game[i][j] = boardGenerator.get_board_for_game(i,j);
+            }
         }
-    }
+
 
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
             if(true){
-                QLabel *m_temp_label = new QLabel();
+                QTableWidgetItem *m_temp_label = new QTableWidgetItem();
                 m_temp_label->setText(QString::number(m_board_for_game[i][j]));
                 m_temp_label->setFont(m_font);
-                m_temp_label->setAlignment(Qt::AlignHCenter);
-                m_board_grid->addWidget(m_temp_label,i,j);
+                m_board_grid->setItem(i,j,m_temp_label);
             }else{
 
             }
@@ -228,5 +230,4 @@ MainWindow::~MainWindow()
     delete m_header;
     delete m_play_slot_label;
     delete m_footer;
-
 }

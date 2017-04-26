@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include "boardgenerator.h"
+#include <QTableWidget>
 
 class MainWindow : public QMainWindow
 {
@@ -42,7 +43,7 @@ private:
     QString m_color;
 
     QPushButton *m_check_button = new QPushButton();
-    QGridLayout *m_board_grid = new QGridLayout();
+    QTableWidget *m_board_grid = new QTableWidget();
     QVBoxLayout *m_play_slot_layout = new QVBoxLayout();
     QLabel *m_header = new QLabel();
     QWidget *m_play_slot_label = new QWidget();
@@ -51,7 +52,6 @@ private:
 
     int m_board[9][9];
     int m_board_for_game[9][9];
-    QVector <int> m_temp;
 
 
 };
