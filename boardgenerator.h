@@ -1,10 +1,7 @@
 #ifndef BOARDGENERATOR_H
 #define BOARDGENERATOR_H
 
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-#include <iostream>
+#include <QTime>
 #include <QVector>
 
 

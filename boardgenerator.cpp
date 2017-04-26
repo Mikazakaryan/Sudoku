@@ -2,11 +2,12 @@
 
 boardGenerator::boardGenerator()
 {
-    srand(time(NULL));
+    QTime time = QTime::currentTime();
+    qsrand((uint)time.msec());
     for (int i = 0; i < 30; i++) {
-      int row = rand() % 9;
-      int col = rand() % 9;
-      int val = rand() % 9 + 1;
+      int row = qrand() % 9;
+      int col = qrand() % 9;
+      int val = qrand() % 9 + 1;
       if (legalAssign(m_grid, row, col, val)){
         m_grid[row][col] = val;
       }
@@ -15,13 +16,12 @@ boardGenerator::boardGenerator()
       for (size_t i = 0; i < 9; i++) {
           for (size_t j = 0; j < 9; j++) {
             m_grid_for_game[i][j] = m_grid[i][j];
-
           }
       }
-      m_number_of_given_amounts = rand() % 10 + 50;
+      m_number_of_given_amounts = qrand() % 10 + 50;
       for (int i = 0; i < m_number_of_given_amounts; i++) {
-        int row = rand() % 9;
-        int col = rand() % 9;
+        int row = qrand() % 9;
+        int col = qrand() % 9;
         if(m_grid_for_game[row][col] != 0){
           m_grid_for_game[row][col] = 0;
         }else{

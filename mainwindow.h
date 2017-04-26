@@ -54,6 +54,8 @@ private:
     int m_board_for_game[9][9];
 
 
+
+
 };
 
 #endif // MAINWINDOW_H
