@@ -18,7 +18,7 @@ boardGenerator::boardGenerator()
             m_grid_for_game[i][j] = m_grid[i][j];
           }
       }
-      m_number_of_given_amounts = qrand() % 10 + 50;
+      m_number_of_given_amounts = qrand() % 10 + 45;
       for (int i = 0; i < m_number_of_given_amounts; i++) {
         int row = qrand() % 9;
         int col = qrand() % 9;

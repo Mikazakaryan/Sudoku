@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include "boardgenerator.h"
 #include <QTableWidget>
+#include <QStandardItem>
 
 class MainWindow : public QMainWindow
 {
@@ -43,19 +44,19 @@ private:
     QString m_color;
 
     QPushButton *m_check_button = new QPushButton();
-    QTableWidget *m_board_grid = new QTableWidget();
     QVBoxLayout *m_play_slot_layout = new QVBoxLayout();
     QLabel *m_header = new QLabel();
     QWidget *m_play_slot_label = new QWidget();
     QHBoxLayout *m_footer = new QHBoxLayout();
     QPushButton *m_new_game = new QPushButton();
 
+    QTableView *m_board_grid = new QTableView();
+    //QTableWidget *m_board_grid = new QTableWidget();
+    QStandardItem *m_table_items = new QStandardItem[81];
+    QStandardItemModel *m_table_items_model = new QStandardItemModel(9,9);
+
     int m_board[9][9];
     int m_board_for_game[9][9];
-
-
-
-
 };
 
 #endif // MAINWINDOW_H
