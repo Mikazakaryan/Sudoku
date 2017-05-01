@@ -5,52 +5,52 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     this->setFixedSize(800,900);
 
-    m_slot_label->setFixedSize(0,0);
+    m_slotLabel->setFixedSize(0,0);
 
-    m_all_layout->addLayout(m_menu_layout);
+    m_allLayout->addLayout(m_menuLayout);
 
-    m_wellcome_label->setText("Wellcome to");
-    m_URL_label->setOpenExternalLinks(true);
-    m_URL_label->setText("<a href='https://github.com/Mikazakaryan/Sudoku' style=\"color: black;\">MSudoku</a>");
+    m_wellcomeLabel->setText("Wellcome to");
+    m_URLLabel->setOpenExternalLinks(true);
+    m_URLLabel->setText("<a href='https://github.com/Mikazakaryan/Sudoku' style=\"color: black;\">MSudoku</a>");
 
-    m_wellcome_layout->addWidget(m_wellcome_label);
-    m_wellcome_layout->addWidget(m_URL_label);
+    m_wellcomeLayout->addWidget(m_wellcomeLabel);
+    m_wellcomeLayout->addWidget(m_URLLabel);
 
-    m_wellcome_label->setAlignment(Qt::AlignBottom);
-    m_URL_label->setAlignment(Qt::AlignHCenter);
+    m_wellcomeLabel->setAlignment(Qt::AlignBottom);
+    m_URLLabel->setAlignment(Qt::AlignHCenter);
 
-    m_wellcome_layout->setAlignment(Qt::AlignHCenter);
-    m_slot_label->setLayout(m_wellcome_layout);
+    m_wellcomeLayout->setAlignment(Qt::AlignHCenter);
+    m_slotLabel->setLayout(m_wellcomeLayout);
 
     m_play->setText("Play");
     m_rules->setText("Rules");
-    m_about_me->setText("About");
+    m_aboutMe->setText("About");
     m_exit->setText("Exit");
 
-    m_buttos_layout->addWidget(m_play);
-    m_buttos_layout->addWidget(m_rules);
-    m_buttos_layout->addWidget(m_about_me);
-    m_buttos_layout->addWidget(m_exit);
+    m_buttosLayout->addWidget(m_play);
+    m_buttosLayout->addWidget(m_rules);
+    m_buttosLayout->addWidget(m_aboutMe);
+    m_buttosLayout->addWidget(m_exit);
 
-    m_slot_label->setFixedSize(800,900);
+    m_slotLabel->setFixedSize(800,900);
 
-    m_menu_layout->addWidget(m_slot_label);
-    m_menu_layout->addLayout(m_buttos_layout);
+    m_menuLayout->addWidget(m_slotLabel);
+    m_menuLayout->addLayout(m_buttosLayout);
 
-    m_window->setLayout(m_all_layout);
+    m_window->setLayout(m_allLayout);
 
     m_font.setPointSize(20);
 
     m_play->setFont(m_font);
     m_rules->setFont(m_font);
-    m_about_me->setFont(m_font);
+    m_aboutMe->setFont(m_font);
     m_exit->setFont(m_font);
 
     m_font.setPointSize(40);
     m_font.setBold(true);
 
-    m_wellcome_label->setFont(m_font);
-    m_URL_label->setFont(m_font);
+    m_wellcomeLabel->setFont(m_font);
+    m_URLLabel->setFont(m_font);
 
     m_color = "background-color: Orange";
     this->setStyleSheet(m_color);
@@ -58,79 +58,77 @@ MainWindow::MainWindow(QWidget *parent) :
     m_color = "color: black";
     m_play->setStyleSheet(m_color);
     m_rules->setStyleSheet(m_color);
-    m_about_me->setStyleSheet(m_color);
+    m_aboutMe->setStyleSheet(m_color);
     m_exit->setStyleSheet(m_color);
-    m_wellcome_label->setStyleSheet(m_color);
+    m_wellcomeLabel->setStyleSheet(m_color);
 
     m_color = "background-color: gray";
     m_play->setStyleSheet(m_color);
     m_rules->setStyleSheet(m_color);
-    m_about_me->setStyleSheet(m_color);
+    m_aboutMe->setStyleSheet(m_color);
     m_exit->setStyleSheet(m_color);
 
     setCentralWidget(m_window);
 
-    connect(m_play, SIGNAL(clicked()), this, SLOT(play_slot()));
-    connect(m_rules, SIGNAL(clicked()), this, SLOT(rule_slot()));
-    connect(m_about_me, SIGNAL(clicked()), this, SLOT(about_slot()));
-    connect(m_exit, SIGNAL(clicked()), this, SLOT(exit_slot()));
+    connect(m_play, SIGNAL(clicked()), this, SLOT(playSlot()));
+    connect(m_rules, SIGNAL(clicked()), this, SLOT(ruleSlot()));
+    connect(m_aboutMe, SIGNAL(clicked()), this, SLOT(aboutSlot()));
+    connect(m_exit, SIGNAL(clicked()), this, SLOT(exitSlot()));
 }
 
-void MainWindow::play_slot(){
+void MainWindow::playSlot(){
     m_font.setBold(false);
-    this->setCentralWidget(m_play_slot_label);
+    this->setCentralWidget(m_playSlotLabel);
 
-    m_play_slot_label->setLayout(m_play_slot_layout);
+    m_playSlotLabel->setLayout(m_playSlotLayout);
     m_font.setPointSize(20);
     m_header->setText("Y o u   c a n   d o   i t");
     m_header->setFont(m_font);
     m_header->setFixedSize(780,50);
     m_header->setAlignment(Qt::AlignHCenter);
-    m_check_button->setFixedSize(780,50);
+    m_checkButton->setFixedSize(780,50);
     m_exit->setFixedSize(350,50);
 
     m_font.setPointSize(20);
-    m_check_button->setFont(m_font);
+    m_checkButton->setFont(m_font);
     m_color = "background-color: gray";
-    m_check_button->setStyleSheet(m_color);
+    m_checkButton->setStyleSheet(m_color);
 
-    m_check_button->setText("Check");
+    m_checkButton->setText("Check");
 
-    m_check_button->setFixedSize(780,50);
+    m_checkButton->setFixedSize(780,50);
 
-    m_new_game->setStyleSheet(m_color);
+    m_newGame->setStyleSheet(m_color);
 
-    m_new_game->setText("New Game");
-    m_new_game->setFont(m_font);
-    m_new_game->setFixedSize(350,50);
+    m_newGame->setText("New Game");
+    m_newGame->setFont(m_font);
+    m_newGame->setFixedSize(350,50);
 
-    genereting_board();
-
-    m_play_slot_layout->addWidget(m_header);
-    m_play_slot_layout->addWidget(m_check_button);
-    m_play_slot_layout->addWidget(m_board_grid);
-    m_board_grid->setModel(m_table_items_model);
-    m_footer->addWidget(m_new_game);
+    m_playSlotLayout->addWidget(m_header);
+    m_playSlotLayout->addWidget(m_checkButton);
+    m_playSlotLayout->addWidget(m_boardGrid);
+    m_boardGrid->setModel(m_tableItemsModel);
+    m_footer->addWidget(m_newGame);
     m_footer->addWidget(m_exit);
-    m_play_slot_layout->addLayout(m_footer);
+    m_playSlotLayout->addLayout(m_footer);
 
-    m_play_slot_layout->setAlignment(Qt::AlignCenter);
+    m_playSlotLayout->setAlignment(Qt::AlignCenter);
 
     for (int i = 0; i < 9; ++i) {
-        m_board_grid->setColumnWidth(i,78);
-        m_board_grid->setRowHeight(i,78);
+        m_boardGrid->setColumnWidth(i,78);
+        m_boardGrid->setRowHeight(i,78);
     }
 
-    connect(m_check_button, SIGNAL(clicked()), this, SLOT(check_slot()));
+    connect(m_checkButton, SIGNAL(clicked()), this, SLOT(checkSlot()));
 
-    connect(m_new_game, SIGNAL(clicked()), this, SLOT(new_game_slot()));
+    connect(m_newGame, SIGNAL(clicked()), this, SLOT(newGameSlot()));
 }
 
-void MainWindow::rule_slot(){
-    m_wellcome_label->setText("");
-    m_URL_label->setOpenExternalLinks(false);
-    m_URL_label->setText("");
-    m_slot_label->setText("A standard Sudoku puzzle consists of a grid of 9 blocks.\n"
+void MainWindow::ruleSlot(){
+    m_wellcomeLabel->setText("");
+    m_URLLabel->setOpenExternalLinks(false);
+    m_URLLabel->setText("");
+    m_slotLabel->setText("A standard Sudoku puzzle consists of a grid of 9 blocks.\n"
                         "Each block contains 9 boxes \n"
                         "arranged in 3 rows and 3 columns."
                         "\n· There is only one valid solution\n"
@@ -149,57 +147,60 @@ void MainWindow::rule_slot(){
                         "no two numbers in the same block of a Sudoku puzzle can be the same.");
 
     m_font.setPointSize(15);
-    m_slot_label->setFont(m_font);
+    m_slotLabel->setFont(m_font);
 
-    m_slot_label->setAlignment(Qt::AlignCenter);
+    m_slotLabel->setAlignment(Qt::AlignCenter);
 
-    m_slot_label->setFixedSize(800,900);
+    m_slotLabel->setFixedSize(800,900);
 }
 
-void MainWindow::about_slot(){
-    m_wellcome_label->setText("");
-    m_URL_label->setOpenExternalLinks(false);
-    m_URL_label->setText("");
-    m_slot_label->setText("I'm a Bachelor's degree student\n"
+void MainWindow::aboutSlot(){
+    m_wellcomeLabel->setText("");
+    m_URLLabel->setOpenExternalLinks(false);
+    m_URLLabel->setText("");
+    m_slotLabel->setText("I'm a Bachelor's degree student\n"
                           "who want to get max point\n"
                           "for this work");
     m_font.setPointSize(25);
-    m_slot_label->setFont(m_font);
-    m_slot_label->setAlignment(Qt::AlignCenter);
+    m_slotLabel->setFont(m_font);
+    m_slotLabel->setAlignment(Qt::AlignCenter);
 
-    m_slot_label->setFixedSize(800,900);
+    m_slotLabel->setFixedSize(800,900);
 
 }
 
-void MainWindow::exit_slot(){
+void MainWindow::exitSlot(){
     close();
 }
 
-void MainWindow::new_game_slot(){
+void MainWindow::newGameSlot(){
 
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
-            m_table_items[9*i+j].setText("");
+            m_tableItems[9*i+j].setText("");
         }
     }
-    genereting_board();
+    generetingBoard();
 }
 
-void MainWindow::check_slot(){
-    bool game_status = true;
+void MainWindow::checkSlot(){
+    bool gameStatus = true;
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
-            if(m_board[i][j] != m_board_for_game[i][j]){
-                game_status = !game_status;
-                m_table_items[9*i+j].setForeground(Qt::red);
+            if(m_board[i][j] != m_boardForGame[i][j]){
+                gameStatus = !gameStatus;
+                m_tableItems[9*i+j].setForeground(Qt::red);
             }else{
-                //if(m_table_items[9*i+j].textColor() != Qt::black){
-                    m_table_items[9*i+j].setForeground(Qt::green);
-                //}
+                if(!m_tableItems[9*i+j].isSelectable()){
+                    m_tableItems[9*i+j].setForeground(Qt::black);
+                  }else{
+                    m_tableItems[9*i+j].setForeground(Qt::green);
+                    m_tableItems[9*i+j].setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+                }
             }
         }
     }
-    if(game_status){
+    if(gameStatus){
         m_color = "color: green";
         m_header->setStyleSheet(m_color);
         m_header->setText("C o n g r a t u l a t i o n s");
@@ -210,62 +211,58 @@ void MainWindow::check_slot(){
     }
 }
 
-void MainWindow::genereting_board(){
-
-
-
+void MainWindow::generetingBoard(){
     boardGenerator boardGenerator;
 
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
-            m_board[i][j] = boardGenerator.get_board(i,j);
+            m_board[i][j] = boardGenerator.getBoard(i,j);
         }
     }
 
         for (int i = 0; i < 9; ++i) {
             for (int j = 0; j < 9; ++j) {
-                m_board_for_game[i][j] = boardGenerator.get_board_for_game(i,j);
+                m_boardForGame[i][j] = boardGenerator.getBoardForGame(i,j);
             }
         }
 
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
             m_font.setPointSize(40);
-            m_table_items[9*i+j].setFont(m_font);
+            m_tableItems[9*i+j].setFont(m_font);
 
-            m_table_items[9*i+j].setTextAlignment(Qt::AlignCenter);
-            m_table_items_model->setItem(i,j,&m_table_items[9*i+j]);
+            m_tableItems[9*i+j].setTextAlignment(Qt::AlignCenter);
+            m_tableItemsModel->setItem(i,j,&m_tableItems[9*i+j]);
 
-            if(m_board_for_game[i][j] != 0){
-                m_table_items[9*i+j].setForeground(Qt::black);
+            if(m_boardForGame[i][j] != 0){
+                m_tableItems[9*i+j].setForeground(Qt::black);
 
-                m_table_items[9*i+j].setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
+                m_tableItems[9*i+j].setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
 
-                m_table_items[9*i+j].setText(QString::number(m_board_for_game[i][j]));
-            }else{
-
+                m_tableItems[9*i+j].setText(QString::number(m_boardForGame[i][j]));
             }
         }
     }
+
 }
 
 
 MainWindow::~MainWindow()
 {
-    delete m_all_layout;
-    delete m_menu_layout;
-    delete m_wellcome_label;
-    delete m_URL_label;
-    delete m_wellcome_layout;
+    delete m_allLayout;
+    delete m_menuLayout;
+    delete m_wellcomeLabel;
+    delete m_URLLabel;
+    delete m_wellcomeLayout;
     delete m_play;
     delete m_rules;
-    delete m_about_me;
+    delete m_aboutMe;
     delete m_exit;
-    delete m_buttos_layout;
+    delete m_buttosLayout;
     delete m_window;
     delete m_header;
-    delete m_play_slot_label;
+    delete m_playSlotLabel;
     delete m_footer;
-    delete m_table_items;
-    delete m_table_items_model;
+    delete m_tableItems;
+    delete m_tableItemsModel;
 }

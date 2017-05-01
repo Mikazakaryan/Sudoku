@@ -16,12 +16,12 @@ public:
     bool existsRow(int grid[9][9], int row, int value);
     bool existsCol(int grid[9][9], int col, int value);
     bool existsBox(int grid[9][9], int boxRow, int boxCol, int value);
-    int get_board(int i, int j);
-    int get_board_for_game(int i, int j);
+    int getBoard(int i, int j);
+    int getBoardForGame(int i, int j);
 
 private:
-    int m_number_of_given_amounts;
-    int m_grid_for_game[9][9] = { { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+    int m_numberOfGivenAmounts;
+    int m_gridForGame[9][9] = { { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
                                   { 0, 0, 0, 0, 0, 0, 0, 0, 0 },

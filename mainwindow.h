@@ -16,47 +16,46 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void genereting_board();
+    void generetingBoard();
 
 public slots:
-    void play_slot();
-    void rule_slot();
-    void about_slot();
-    void exit_slot();
-    void check_slot();
-    void new_game_slot();
+    void playSlot();
+    void ruleSlot();
+    void aboutSlot();
+    void exitSlot();
+    void checkSlot();
+    void newGameSlot();
 
 
 private:
-    QLabel *m_slot_label = new QLabel();
-    QHBoxLayout *m_all_layout = new QHBoxLayout();
-    QVBoxLayout *m_menu_layout = new QVBoxLayout();
-    QLabel *m_wellcome_label = new QLabel();
-    QLabel *m_URL_label = new QLabel();
-    QVBoxLayout *m_wellcome_layout = new QVBoxLayout();
+    QLabel *m_slotLabel = new QLabel();
+    QHBoxLayout *m_allLayout = new QHBoxLayout();
+    QVBoxLayout *m_menuLayout = new QVBoxLayout();
+    QLabel *m_wellcomeLabel = new QLabel();
+    QLabel *m_URLLabel = new QLabel();
+    QVBoxLayout *m_wellcomeLayout = new QVBoxLayout();
     QPushButton *m_play = new QPushButton();
     QPushButton *m_rules = new QPushButton();
-    QPushButton *m_about_me = new QPushButton();
+    QPushButton *m_aboutMe = new QPushButton();
     QPushButton *m_exit = new QPushButton();
-    QVBoxLayout *m_buttos_layout = new QVBoxLayout();
+    QVBoxLayout *m_buttosLayout = new QVBoxLayout();
     QWidget *m_window = new QWidget();
     QFont m_font;
     QString m_color;
 
-    QPushButton *m_check_button = new QPushButton();
-    QVBoxLayout *m_play_slot_layout = new QVBoxLayout();
+    QPushButton *m_checkButton = new QPushButton();
+    QVBoxLayout *m_playSlotLayout = new QVBoxLayout();
     QLabel *m_header = new QLabel();
-    QWidget *m_play_slot_label = new QWidget();
+    QWidget *m_playSlotLabel = new QWidget();
     QHBoxLayout *m_footer = new QHBoxLayout();
-    QPushButton *m_new_game = new QPushButton();
+    QPushButton *m_newGame = new QPushButton();
 
-    QTableView *m_board_grid = new QTableView();
-    //QTableWidget *m_board_grid = new QTableWidget();
-    QStandardItem *m_table_items = new QStandardItem[81];
-    QStandardItemModel *m_table_items_model = new QStandardItemModel(9,9);
+    QTableView *m_boardGrid = new QTableView();
+    QStandardItem *m_tableItems = new QStandardItem[81];
+    QStandardItemModel *m_tableItemsModel = new QStandardItemModel(9,9);
 
     int m_board[9][9];
-    int m_board_for_game[9][9];
+    int m_boardForGame[9][9];
 };
 
 #endif // MAINWINDOW_H

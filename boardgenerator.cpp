@@ -15,15 +15,15 @@ boardGenerator::boardGenerator()
     if (fill(m_grid) == true) {
       for (size_t i = 0; i < 9; i++) {
           for (size_t j = 0; j < 9; j++) {
-            m_grid_for_game[i][j] = m_grid[i][j];
+            m_gridForGame[i][j] = m_grid[i][j];
           }
       }
-      m_number_of_given_amounts = qrand() % 10 + 45;
-      for (int i = 0; i < m_number_of_given_amounts; i++) {
+      m_numberOfGivenAmounts = qrand() % 10 + 45;
+      for (int i = 0; i < m_numberOfGivenAmounts; i++) {
         int row = qrand() % 9;
         int col = qrand() % 9;
-        if(m_grid_for_game[row][col] != 0){
-          m_grid_for_game[row][col] = 0;
+        if(m_gridForGame[row][col] != 0){
+          m_gridForGame[row][col] = 0;
         }else{
           i--;
         }
@@ -95,12 +95,12 @@ bool boardGenerator::legalAssign(int m_grid[9][9], int row, int col, int value) 
 }
 
 
-int boardGenerator::get_board(int i, int j){
+int boardGenerator::getBoard(int i, int j){
     return m_grid[i][j];
 }
 
-int boardGenerator::get_board_for_game(int i, int j){
-    return m_grid_for_game[i][j];
+int boardGenerator::getBoardForGame(int i, int j){
+    return m_gridForGame[i][j];
 }
 
 
