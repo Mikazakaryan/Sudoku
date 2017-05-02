@@ -18,7 +18,9 @@ boardGenerator::boardGenerator()
             m_gridForGame[i][j] = m_grid[i][j];
           }
       }
-      m_numberOfGivenAmounts = qrand() % 10 + 45;
+      //m_numberOfGivenAmounts = qrand() % 10 + 45;
+      //for testing
+      m_numberOfGivenAmounts = 1;
       for (int i = 0; i < m_numberOfGivenAmounts; i++) {
         int row = qrand() % 9;
         int col = qrand() % 9;
@@ -94,7 +96,6 @@ bool boardGenerator::legalAssign(int m_grid[9][9], int row, int col, int value) 
   return !existsRow(m_grid, row, value) && !existsCol(m_grid, col, value) && !existsBox(m_grid, row-row%3, col-col%3, value);
 }
 
-
 int boardGenerator::getBoard(int i, int j){
     return m_grid[i][j];
 }
@@ -102,7 +103,6 @@ int boardGenerator::getBoard(int i, int j){
 int boardGenerator::getBoardForGame(int i, int j){
     return m_gridForGame[i][j];
 }
-
 
 boardGenerator::~boardGenerator()
 {

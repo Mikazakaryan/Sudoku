@@ -25,6 +25,7 @@ public slots:
     void exitSlot();
     void checkSlot();
     void newGameSlot();
+    void onTableClickedSlot(QStandardItem* changedItem);
 
 
 private:

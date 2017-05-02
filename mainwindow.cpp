@@ -83,6 +83,8 @@ void MainWindow::playSlot(){
     m_playSlotLabel->setLayout(m_playSlotLayout);
     m_font.setPointSize(20);
     m_header->setText("Y o u   c a n   d o   i t");
+    m_color = "color : blue";
+    m_header->setStyleSheet(m_color);
     m_header->setFont(m_font);
     m_header->setFixedSize(780,50);
     m_header->setAlignment(Qt::AlignHCenter);
@@ -188,12 +190,10 @@ void MainWindow::checkSlot(){
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
             if(m_board[i][j] != m_boardForGame[i][j]){
-                gameStatus = !gameStatus;
+                gameStatus = false;
                 m_tableItems[9*i+j].setForeground(Qt::red);
             }else{
-                if(!m_tableItems[9*i+j].isSelectable()){
-                    m_tableItems[9*i+j].setForeground(Qt::black);
-                  }else{
+                if(m_tableItems[9*i+j].foreground() != Qt::black){
                     m_tableItems[9*i+j].setForeground(Qt::green);
                     m_tableItems[9*i+j].setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
                 }
@@ -240,12 +240,23 @@ void MainWindow::generetingBoard(){
                 m_tableItems[9*i+j].setFlags(Qt::ItemIsSelectable|Qt::ItemIsEnabled);
 
                 m_tableItems[9*i+j].setText(QString::number(m_boardForGame[i][j]));
+            }else{
+                m_tableItems[9*i+j].setForeground(Qt::blue);
             }
         }
     }
-
+    connect(m_tableItemsModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(onTableClickedSlot(QStandardItem*)));
 }
 
+void MainWindow::onTableClickedSlot(QStandardItem* changedItem)
+{
+    int row = changedItem->row();
+    int col = changedItem->column();
+    int value = m_tableItems[9*row+col].text().toInt();
+    if(value != m_boardForGame[row][col]){
+        m_boardForGame[row][col] = value;
+    }
+}
 
 MainWindow::~MainWindow()
 {
@@ -265,4 +276,9 @@ MainWindow::~MainWindow()
     delete m_footer;
     delete m_tableItems;
     delete m_tableItemsModel;
+    delete m_slotLabel;
+    delete m_checkButton;
+    delete m_playSlotLayout;
+    delete m_newGame;
+    delete m_boardGrid;
 }
