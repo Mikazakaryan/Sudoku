@@ -121,6 +121,8 @@ void MainWindow::playSlot(){
         m_boardGrid->setRowHeight(i,78);
     }
 
+    generetingBoard();
+
     connect(m_checkButton, SIGNAL(clicked()), this, SLOT(checkSlot()));
 
     connect(m_newGame, SIGNAL(clicked()), this, SLOT(newGameSlot()));
@@ -180,6 +182,7 @@ void MainWindow::newGameSlot(){
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
             m_tableItems[9*i+j].setText("");
+            m_tableItems[9*i+j].setFlags(Qt::ItemIsEditable|Qt::ItemIsSelectable|Qt::ItemIsEnabled);
         }
     }
     generetingBoard();
@@ -214,6 +217,7 @@ void MainWindow::checkSlot(){
 void MainWindow::generetingBoard(){
     boardGenerator boardGenerator;
 
+    changeable = false;
     for (int i = 0; i < 9; ++i) {
         for (int j = 0; j < 9; ++j) {
             m_board[i][j] = boardGenerator.getBoard(i,j);
@@ -245,16 +249,19 @@ void MainWindow::generetingBoard(){
             }
         }
     }
-    connect(m_tableItemsModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(onTableClickedSlot(QStandardItem*)));
+    changeable = true;
+    connect(m_tableItemsModel, SIGNAL(itemChanged(QStandardItem*)), this, SLOT(itemChanged(QStandardItem*)));
 }
 
-void MainWindow::onTableClickedSlot(QStandardItem* changedItem)
+void MainWindow::itemChanged(QStandardItem* changedItem)
 {
-    int row = changedItem->row();
-    int col = changedItem->column();
-    int value = m_tableItems[9*row+col].text().toInt();
-    if(value != m_boardForGame[row][col]){
-        m_boardForGame[row][col] = value;
+    if(changeable){
+        int row = changedItem->row();
+        int col = changedItem->column();
+        int value = m_tableItems[9*row+col].text().toInt();
+        if(value != m_boardForGame[row][col]){
+            m_boardForGame[row][col] = value;
+        }
     }
 }
 

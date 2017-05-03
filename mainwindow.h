@@ -25,7 +25,7 @@ public slots:
     void exitSlot();
     void checkSlot();
     void newGameSlot();
-    void onTableClickedSlot(QStandardItem* changedItem);
+    void itemChanged(QStandardItem* changedItem);
 
 
 private:
@@ -57,6 +57,7 @@ private:
 
     int m_board[9][9];
     int m_boardForGame[9][9];
+    bool changeable;
 };
 
 #endif // MAINWINDOW_H
