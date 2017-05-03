@@ -4,96 +4,100 @@ boardGenerator::boardGenerator()
 {
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
-    for (int i = 0; i < 30; i++) {
-      int row = qrand() % 9;
-      int col = qrand() % 9;
-      int val = qrand() % 9 + 1;
-      if (legalAssign(m_grid, row, col, val)){
-        m_grid[row][col] = val;
-      }
-    }
-    if (fill(m_grid) == true) {
-      for (size_t i = 0; i < 9; i++) {
-          for (size_t j = 0; j < 9; j++) {
-            m_gridForGame[i][j] = m_grid[i][j];
-          }
-      }
-      //m_numberOfGivenAmounts = qrand() % 10 + 45;
-      //for testing
-      m_numberOfGivenAmounts = 1;
-      for (int i = 0; i < m_numberOfGivenAmounts; i++) {
-        int row = qrand() % 9;
-        int col = qrand() % 9;
-        if(m_gridForGame[row][col] != 0){
-          m_gridForGame[row][col] = 0;
-        }else{
-          i--;
+
+    int numarr1[] = { 1,2,3,4,5,6,7,8,9 };
+    for (int i = 8; i >= 0; i--){
+        int pos = qrand() % (i + 1);
+        m_grid[0][i] = numarr1[pos];
+        for (int j = pos; j<i; j++){
+            numarr1[j] = numarr1[j + 1];
         }
-      }
-    } else {
-      boardGenerator();
     }
+
+
+    for (int i = 1; i < 9; i++){
+        for (int j = 0; j < 9; j++){
+            m_grid[i][j] = 0;
+        }
+    }
+
+    for (int row = 0; row < 9; row++){
+        for (int col = 0; col < 9; col++){
+            m_gridForGame[row][col] = 0;
+        }
+    }
+
+    if (SolveSudoku(m_grid) == true){
+        int count = 1;
+        int irand;
+        int jrand;
+
+        while (count <= 30){
+            irand = qrand() % 9;
+            jrand = qrand() % 9;
+            m_gridForGame[irand][jrand] = m_grid[irand][jrand];
+            ++count;
+        }
+    }
+    else
+        boardGenerator();
 }
 
-bool boardGenerator::fill(int m_grid[9][9]) {
-  int row, col;
-  if (!unassignedCell(m_grid, row, col)) {
-    return true;
-  }
-  for (int value = 1; value <= 9; value++) {
-    if (legalAssign(m_grid, row, col, value)) {
-      m_grid[row][col] = value;
-      if (fill(m_grid)) {
+bool boardGenerator::SolveSudoku(int m_grid[9][9]){
+    int row, col;
+
+    if (!FindUnassignedLocation(m_grid, row, col))
         return true;
-      }
-      m_grid[row][col] = 0;
+
+    for (int num = 1; num <= 9; num++)
+    {
+        if (isSafe(m_grid, row, col, num))
+        {
+            m_grid[row][col] = num;
+
+            if (SolveSudoku(m_grid))
+                return true;
+
+            m_grid[row][col] = 0;
+        }
     }
-  }
-  return false;
+    return false;
 }
 
-bool boardGenerator::unassignedCell(int m_grid[9][9], int &row, int &col) {
-  for (row = 0; row < 9; row++) {
-    for (col = 0; col < 9; col++) {
-      if (m_grid[row][col] == 0) {
-        return true;
-      }
-    }
-  }
-  return false;
+bool boardGenerator::FindUnassignedLocation(int m_grid[9][9], int &row, int &col){
+    for (row = 0; row < 9; row++)
+        for (col = 0; col < 9; col++)
+            if (m_grid[row][col] == 0)
+                return true;
+    return false;
 }
 
-bool boardGenerator::existsRow(int m_grid[9][9], int row, int value) {
-  for (int col = 0; col < 9; col++) {
-    if (m_grid[row][col] == value) {
-      return true;
-    }
-  }
-  return false;
+bool boardGenerator::UsedInRow(int m_grid[9][9], int row, int num){
+    for (int col = 0; col < 9; col++)
+        if (m_grid[row][col] == num)
+            return true;
+    return false;
 }
 
-bool boardGenerator::existsCol(int m_grid[9][9], int col, int value) {
-  for (int row = 0; row < 9; row++) {
-    if (m_grid[row][col] == value) {
-      return true;
-    }
-  }
-  return false;
+bool boardGenerator::UsedInCol(int m_grid[9][9], int col, int num){
+    for (int row = 0; row < 9; row++)
+        if (m_grid[row][col] == num)
+            return true;
+    return false;
 }
 
-bool boardGenerator::existsBox(int m_grid[9][9], int boxRow, int boxCol, int value) {
-  for (int row = 0; row < 3; row++) {
-    for (int col = 0; col < 3; col++) {
-      if (m_grid[row+boxRow][col+boxCol] == value) {
-        return true;
-      }
-    }
-  }
-  return false;
+bool boardGenerator::UsedInBox(int m_grid[9][9], int boxStartRow, int boxStartCol, int num){
+    for (int row = 0; row < 3; row++)
+        for (int col = 0; col < 3; col++)
+            if (m_grid[row + boxStartRow][col + boxStartCol] == num)
+                return true;
+    return false;
 }
 
-bool boardGenerator::legalAssign(int m_grid[9][9], int row, int col, int value) {
-  return !existsRow(m_grid, row, value) && !existsCol(m_grid, col, value) && !existsBox(m_grid, row-row%3, col-col%3, value);
+bool boardGenerator::isSafe(int m_grid[9][9], int row, int col, int num){
+    return !UsedInRow(m_grid, row, num) &&
+        !UsedInCol(m_grid, col, num) &&
+        !UsedInBox(m_grid, row - row % 3, col - col % 3, num);
 }
 
 int boardGenerator::getBoard(int i, int j){

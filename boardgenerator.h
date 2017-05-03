@@ -2,7 +2,6 @@
 #define BOARDGENERATOR_H
 
 #include <QTime>
-#include <QVector>
 
 
 class boardGenerator
@@ -10,35 +9,19 @@ class boardGenerator
 public:
     boardGenerator();
     ~boardGenerator();
-    bool unassignedCell(int grid[9][9], int &row, int &col);
-    bool legalAssign(int grid[9][9], int row, int col, int value);
-    bool fill(int grid[9][9]);
-    bool existsRow(int grid[9][9], int row, int value);
-    bool existsCol(int grid[9][9], int col, int value);
-    bool existsBox(int grid[9][9], int boxRow, int boxCol, int value);
+    bool SolveSudoku(int grid[9][9]);
+    bool FindUnassignedLocation(int grid[9][9], int &row, int &col);
+    bool UsedInRow(int grid[9][9], int row, int num);
+    bool UsedInCol(int grid[9][9], int col, int num);
+    bool UsedInBox(int grid[9][9], int boxStartRow, int boxStartCol, int num);
+    bool isSafe(int grid[9][9], int row, int col, int num);
     int getBoard(int i, int j);
     int getBoardForGame(int i, int j);
 
 private:
-    int m_numberOfGivenAmounts;
-    int m_gridForGame[9][9] = { { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                                  { 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
-    int m_grid[9][9] = { { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                         { 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+    int m_grid[9][9];
+    int m_gridForGame[9][9];
+
 };
 
 #endif // BOARDGENERATOR_H
