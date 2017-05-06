@@ -5,12 +5,12 @@ boardGenerator::boardGenerator()
     QTime time = QTime::currentTime();
     qsrand((uint)time.msec());
 
-    int numarr1[] = { 1,2,3,4,5,6,7,8,9 };
+    int numbers[] = { 1,2,3,4,5,6,7,8,9 };
     for (int i = 8; i >= 0; i--){
         int pos = qrand() % (i + 1);
-        m_grid[0][i] = numarr1[pos];
+        m_grid[0][i] = numbers[pos];
         for (int j = pos; j<i; j++){
-            numarr1[j] = numarr1[j + 1];
+            numbers[j] = numbers[j + 1];
         }
     }
 
@@ -31,12 +31,14 @@ boardGenerator::boardGenerator()
         int count = 1;
         int irand;
         int jrand;
-
+        //while (count <= 80){
         while (count <= 30){
             irand = qrand() % 9;
             jrand = qrand() % 9;
-            m_gridForGame[irand][jrand] = m_grid[irand][jrand];
-            ++count;
+            if(m_gridForGame[irand][jrand] == 0){
+                m_gridForGame[irand][jrand] = m_grid[irand][jrand];
+                ++count;
+            }
         }
     }
     else

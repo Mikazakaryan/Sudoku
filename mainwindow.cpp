@@ -261,6 +261,7 @@ void MainWindow::itemChanged(QStandardItem* changedItem)
         int value = m_tableItems[9*row+col].text().toInt();
         if(value != m_boardForGame[row][col]){
             m_boardForGame[row][col] = value;
+            m_tableItems[9*row+col].setForeground(Qt::blue);
         }
     }
 }
