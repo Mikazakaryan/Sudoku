@@ -268,25 +268,33 @@ void MainWindow::itemChanged(QStandardItem* changedItem)
 
 MainWindow::~MainWindow()
 {
-    delete m_allLayout;
-    delete m_menuLayout;
-    delete m_wellcomeLabel;
-    delete m_URLLabel;
-    delete m_wellcomeLayout;
+    delete m_tableItems;
+    delete m_tableItemsModel;
+    delete m_header;
+    delete m_checkButton;
+    delete m_exit;
+    delete m_newGame;
+    delete m_boardGrid;
+    delete m_footer;
+
+    delete m_playSlotLayout;
+
     delete m_play;
     delete m_rules;
     delete m_aboutMe;
-    delete m_exit;
-    delete m_buttosLayout;
-    delete m_window;
-    delete m_header;
+
     delete m_playSlotLabel;
-    delete m_footer;
-    delete m_tableItems;
-    delete m_tableItemsModel;
+    delete m_buttosLayout;
+
+    delete m_URLLabel;
+    delete m_wellcomeLabel;
+
+    delete m_wellcomeLayout;
+
+    delete m_menuLayout;
     delete m_slotLabel;
-    delete m_checkButton;
-    delete m_playSlotLayout;
-    delete m_newGame;
-    delete m_boardGrid;
+
+    delete m_allLayout;
+
+    delete m_window;
 }
