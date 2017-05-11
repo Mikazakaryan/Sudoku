@@ -117,8 +117,8 @@ void MainWindow::playSlot(){
     m_playSlotLayout->setAlignment(Qt::AlignCenter);
 
     for (int i = 0; i < 9; ++i) {
-        m_boardGrid->setColumnWidth(i,78);
-        m_boardGrid->setRowHeight(i,78);
+        m_boardGrid->setColumnWidth(i,75);
+        m_boardGrid->setRowHeight(i,75);
     }
 
     generetingBoard();
